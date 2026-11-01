@@ -1,26 +1,541 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   NEO-BRUTALISM DESIGN SYSTEM — MABAR VIP
+   ============================================================ */
 
 @theme inline {
+  /* Font stacks */
+  --font-sans: 'Plus Jakarta Sans', 'Bricolage Grotesque', 'Sora', 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Courier Prime', monospace;
+  --font-heading: 'Archivo Black', 'Syne', 'Lexend Mega', 'Alfa Slab One', sans-serif;
+
+  /* === Neo-Brutalism Dynamic Color Palette === */
+  --color-nb-black: var(--nb-black);
+  --color-nb-white: var(--nb-white);
+  --color-nb-cream: var(--nb-cream);
+  --color-nb-yellow: #FFE66D;
+  --color-nb-pink: #FF6B9D;
+  --color-nb-cyan: #4ECDC4;
+  --color-nb-purple: #A855F7;
+  --color-nb-orange: #FF8A5C;
+  --color-nb-lime: #C5E84D;
+  --color-nb-blue: #5B7FFF;
+  --color-nb-red: #FF4757;
+
+  /* Dynamic Neutral scale */
+  --color-nb-gray-100: var(--nb-gray-100);
+  --color-nb-gray-200: var(--nb-gray-200);
+  --color-nb-gray-300: var(--nb-gray-300);
+  --color-nb-gray-400: var(--nb-gray-400);
+  --color-nb-gray-500: var(--nb-gray-500);
+  --color-nb-gray-600: var(--nb-gray-600);
+  --color-nb-gray-700: var(--nb-gray-700);
+
+  /* === shadcn token overrides → Neo-Brutalism === */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Sidebar tokens */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Chart tokens */
+  --color-chart-1: #FFE66D;
+  --color-chart-2: #FF6B9D;
+  --color-chart-3: #4ECDC4;
+  --color-chart-4: #A855F7;
+  --color-chart-5: #FF8A5C;
+
+  /* === Neo-Brutalism Radius === */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 28px;
+  --radius-4xl: 32px;
+
+  /* === Neo-Brutalism Dynamic Shadows === */
+  --shadow-nb-sm: 3px 3px 0px var(--shadow-nb-color);
+  --shadow-nb-md: 5px 5px 0px var(--shadow-nb-color);
+  --shadow-nb-lg: 8px 8px 0px var(--shadow-nb-color);
+  --shadow-nb-xl: 12px 12px 0px var(--shadow-nb-color);
+  --shadow-nb-hover: 2px 2px 0px var(--shadow-nb-color);
+  --shadow-nb-active: 1px 1px 0px var(--shadow-nb-color);
+  --shadow-nb-yellow: 5px 5px 0px #FFE66D;
+  --shadow-nb-pink: 5px 5px 0px #FF6B9D;
+  --shadow-nb-cyan: 5px 5px 0px #4ECDC4;
+  --shadow-nb-purple: 5px 5px 0px #A855F7;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================================
+   ROOT THEME — Light Mode (Default)
+   ============================================================ */
+:root {
+  /* Dynamic Palette Tokens */
+  --nb-black: #1A1A2E;
+  --nb-white: #FFFEF2;
+  --nb-cream: #FFF8E7;
+  --nb-gray-100: #F5F5F0;
+  --nb-gray-200: #E8E8E0;
+  --nb-gray-300: #D4D4CC;
+  --nb-gray-400: #A0A098;
+  --nb-gray-500: #6B6B63;
+  --nb-gray-600: #4A4A44;
+  --nb-gray-700: #2D2D28;
+  --shadow-nb-color: #1A1A2E;
+
+  /* Remap shadcn tokens */
+  --background: #FFFEF2;
+  --foreground: #1A1A2E;
+  --card: #FFF8E7;
+  --card-foreground: #1A1A2E;
+  --popover: #FFFEF2;
+  --popover-foreground: #1A1A2E;
+  --primary: #FFE66D;
+  --primary-foreground: #1A1A2E;
+  --secondary: #4ECDC4;
+  --secondary-foreground: #1A1A2E;
+  --muted: #F5F5F0;
+  --muted-foreground: #6B6B63;
+  --accent: #FF6B9D;
+  --accent-foreground: #FFFEF2;
+  --destructive: #FF4757;
+  --border: #1A1A2E;
+  --input: #1A1A2E;
+  --ring: #4ECDC4;
+  --radius: 12px;
+
+  /* Sidebar */
+  --sidebar: #FFF8E7;
+  --sidebar-foreground: #1A1A2E;
+  --sidebar-primary: #FFE66D;
+  --sidebar-primary-foreground: #1A1A2E;
+  --sidebar-accent: #F5F5F0;
+  --sidebar-accent-foreground: #1A1A2E;
+  --sidebar-border: #1A1A2E;
+  --sidebar-ring: #4ECDC4;
+}
+
+/* ============================================================
+   DARK MODE — Inverted High-Contrast Neo-Brutalism
+   ============================================================ */
+.dark {
+  /* Dynamic Inverted Palette Tokens */
+  --nb-black: #FFFFFF;
+  --nb-white: #0E0F1A;
+  --nb-cream: #171829;
+  --nb-gray-100: #1D1F38;
+  --nb-gray-200: #282B4E;
+  --nb-gray-300: #3D426E;
+  --nb-gray-400: #7E85AC;
+  --nb-gray-500: #A0A7D0;
+  --nb-gray-600: #C2C8E6;
+  --nb-gray-700: #E6E8F6;
+  --shadow-nb-color: #FFFFFF;
+
+  --background: #0E0F1A;
+  --foreground: #FFFFFF;
+  --card: #171829;
+  --card-foreground: #FFFFFF;
+  --popover: #171829;
+  --popover-foreground: #FFFFFF;
+  --primary: #FFE66D;
+  --primary-foreground: #1A1A2E;
+  --secondary: #4ECDC4;
+  --secondary-foreground: #1A1A2E;
+  --muted: #171829;
+  --muted-foreground: #A0A7D0;
+  --accent: #FF6B9D;
+  --accent-foreground: #FFFFFF;
+  --destructive: #FF4757;
+  --border: #FFFFFF;
+  --input: #FFFFFF;
+  --ring: #4ECDC4;
+
+  --sidebar: #171829;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFE66D;
+  --sidebar-primary-foreground: #1A1A2E;
+  --sidebar-accent: #111222;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #FFFFFF;
+  --sidebar-ring: #4ECDC4;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+  html {
+    font-family: var(--font-sans);
+  }
+
+  /* Heading defaults — Archivo Black / Syne */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
+/* ============================================================
+   FONT UTILITIES (User Requested Font Variations)
+   ============================================================ */
+.font-heading { font-family: 'Archivo Black', 'Syne', 'Lexend Mega', sans-serif !important; }
+.font-archivo { font-family: 'Archivo Black', sans-serif !important; }
+.font-syne { font-family: 'Syne', sans-serif !important; }
+.font-lexend { font-family: 'Lexend Mega', sans-serif !important; }
+.font-alfa { font-family: 'Alfa Slab One', serif !important; }
+
+.font-sans { font-family: 'Plus Jakarta Sans', 'Bricolage Grotesque', 'Sora', system-ui, sans-serif !important; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }
+.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }
+.font-sora { font-family: 'Sora', sans-serif !important; }
+.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }
+
+.font-mono { font-family: 'Space Mono', 'Courier Prime', monospace !important; }
+.font-space-mono { font-family: 'Space Mono', monospace !important; }
+.font-courier { font-family: 'Courier Prime', monospace !important; }
+
+/* ============================================================
+   NEO-BRUTALISM UTILITY CLASSES — LIGHT & DARK ENHANCED
+   ============================================================ */
+
+/* === Dot Pattern Background === */
+.nb-dots {
+  background-image: radial-gradient(#D6D6CC 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+.dark .nb-dots {
+  background-image: radial-gradient(#2E3256 1.5px, transparent 1.5px) !important;
+}
+
+/* === Neo-Brutal Card === */
+.nb-card {
+  background: var(--color-nb-cream);
+  border: 3px solid var(--color-nb-black);
+  border-radius: 16px;
+  box-shadow: 5px 5px 0px var(--shadow-nb-color);
+  transition: all 0.15s ease;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+.nb-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px var(--shadow-nb-color);
+}
+
+.nb-card-flat {
+  background: var(--color-nb-cream);
+  border: 3px solid var(--color-nb-black);
+  border-radius: 16px;
+  box-shadow: 5px 5px 0px var(--shadow-nb-color);
+  color: var(--foreground);
+}
+
+/* === Neo-Brutal Button === */
+.nb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  border: 3px solid var(--color-nb-black);
+  border-radius: 12px;
+  box-shadow: 5px 5px 0px var(--shadow-nb-color);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.nb-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px var(--shadow-nb-color);
+}
+.nb-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 1px 1px 0px var(--shadow-nb-color);
+}
+
+/* Bright Buttons always have black text and black border for extreme legibility */
+.nb-btn-primary {
+  background: var(--color-nb-yellow);
+  color: #1A1A2E !important;
+  border-color: #1A1A2E !important;
+}
+.nb-btn-secondary {
+  background: var(--color-nb-cyan);
+  color: #1A1A2E !important;
+  border-color: #1A1A2E !important;
+}
+.nb-btn-pink {
+  background: var(--color-nb-pink);
+  color: #FFFFFF !important;
+  border-color: #1A1A2E !important;
+}
+.nb-btn-ghost {
+  background: transparent;
+  color: var(--foreground) !important;
+  border: 2px solid var(--color-nb-black);
+  box-shadow: 3px 3px 0px var(--shadow-nb-color);
+}
+.nb-btn-ghost:hover {
+  background: var(--color-nb-gray-100);
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px var(--shadow-nb-color);
+}
+.nb-btn-danger {
+  background: var(--color-nb-red);
+  color: #FFFFFF !important;
+  border-color: #1A1A2E !important;
+}
+.nb-btn-lime {
+  background: var(--color-nb-lime);
+  color: #1A1A2E !important;
+  border-color: #1A1A2E !important;
+}
+.nb-btn-cyan {
+  background: var(--color-nb-cyan);
+  color: #1A1A2E !important;
+  border-color: #1A1A2E !important;
+}
+.nb-btn-yellow {
+  background: var(--color-nb-yellow);
+  color: #1A1A2E !important;
+  border-color: #1A1A2E !important;
+}
+
+/* === Neo-Brutal Input === */
+.nb-input {
+  width: 100%;
+  background: var(--color-nb-white);
+  border: 2px solid var(--color-nb-black);
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px var(--shadow-nb-color);
+  padding: 12px 16px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  transition: all 0.15s ease;
+  color: var(--foreground);
+}
+.nb-input:focus {
+  box-shadow: 5px 5px 0px var(--shadow-nb-color);
+  border-color: var(--color-nb-cyan);
+  outline: none;
+  transform: translate(-1px, -1px);
+}
+.nb-input::placeholder {
+  color: var(--color-nb-gray-400);
+}
+
+/* === Neo-Brutal Badge === */
+.nb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 2px solid var(--color-nb-black);
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 2px 2px 0px var(--shadow-nb-color);
+  line-height: 1.4;
+}
+.nb-badge-yellow { background: var(--color-nb-yellow); color: #1A1A2E !important; border-color: #1A1A2E !important; }
+.nb-badge-pink { background: var(--color-nb-pink); color: #FFFFFF !important; border-color: #1A1A2E !important; }
+.nb-badge-cyan { background: var(--color-nb-cyan); color: #1A1A2E !important; border-color: #1A1A2E !important; }
+.nb-badge-purple { background: var(--color-nb-purple); color: #FFFFFF !important; border-color: #1A1A2E !important; }
+.nb-badge-lime { background: var(--color-nb-lime); color: #1A1A2E !important; border-color: #1A1A2E !important; }
+.nb-badge-orange { background: var(--color-nb-orange); color: #1A1A2E !important; border-color: #1A1A2E !important; }
+.nb-badge-red { background: var(--color-nb-red); color: #FFFFFF !important; border-color: #1A1A2E !important; }
+
+/* === Neo-Brutal Navbar === */
+.nb-navbar {
+  background: var(--color-nb-white);
+  border-bottom: 3px solid var(--color-nb-black);
+  box-shadow: 0 4px 0px var(--shadow-nb-color);
+  padding: 0 24px;
+  height: 72px;
+}
+
+/* === Neo-Brutal Table === */
+.nb-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 3px solid var(--color-nb-black);
+  border-radius: 16px;
+  box-shadow: 5px 5px 0px var(--shadow-nb-color);
+  overflow: hidden;
+}
+.nb-table thead {
+  background: var(--color-nb-black);
+  color: var(--color-nb-white);
+}
+.nb-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.nb-table td {
+  padding: 14px 16px;
+  border-top: 2px solid var(--color-nb-black);
+  font-size: 14px;
+}
+
+/* === Sticker Label === */
+.nb-sticker {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--color-nb-yellow);
+  color: #1A1A2E !important;
+  border: 2px solid #1A1A2E !important;
+  box-shadow: 2px 2px 0px #1A1A2E !important;
+  transform: rotate(-3deg);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* === Marquee === */
+.nb-marquee {
+  display: flex;
+  overflow: hidden;
+  background: var(--color-nb-black);
+  color: var(--color-nb-yellow);
+  padding: 10px 0;
+  border-top: 3px solid var(--color-nb-black);
+  border-bottom: 3px solid var(--color-nb-black);
+}
+.dark .nb-marquee {
+  background: #171829 !important;
+  color: var(--color-nb-yellow) !important;
+  border-color: #FFFFFF !important;
+}
+.nb-marquee-content {
+  display: flex;
+  animation: nb-marquee 20s linear infinite;
+  white-space: nowrap;
+  gap: 48px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+}
+
+/* === Keyframe Animations === */
+@keyframes nb-marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   DARK MODE TEXT READABILITY OVERRIDES ("Pastikan Tulisannya Kelihatan Semua")
+   ============================================================ */
+
+/* Ensure bright color utilities always retain their background in both light & dark mode */
+.bg-nb-yellow {
+  background-color: #FFE66D !important;
+}
+.bg-nb-cyan {
+  background-color: #4ECDC4 !important;
+}
+.bg-nb-lime {
+  background-color: #C5E84D !important;
+}
+.bg-nb-pink {
+  background-color: #FF6B9D !important;
+}
+
+/* High-contrast text on bright backgrounds in all modes */
+.bg-nb-yellow,
+.bg-nb-lime,
+.bg-nb-cyan,
+.nb-btn-primary,
+.nb-btn-secondary,
+.nb-btn-yellow,
+.nb-btn-cyan,
+.nb-btn-lime,
+.nb-badge-yellow,
+.nb-badge-lime,
+.nb-badge-cyan,
+.nb-sticker {
+  color: #1A1A2E !important;
+}
+
+.bg-nb-yellow *:not(.nb-badge-purple):not(.nb-badge-pink):not(.nb-badge-red):not(.nb-badge-blue):not(.text-white),
+.bg-nb-lime *:not(.nb-badge-purple):not(.nb-badge-pink):not(.nb-badge-red):not(.nb-badge-blue):not(.text-white),
+.bg-nb-cyan *:not(.nb-badge-purple):not(.nb-badge-pink):not(.nb-badge-red):not(.nb-badge-blue):not(.text-white),
+.nb-btn-primary *,
+.nb-btn-secondary *,
+.nb-btn-yellow *,
+.nb-btn-cyan *,
+.nb-btn-lime *,
+.nb-badge-yellow *,
+.nb-badge-lime *,
+.nb-badge-cyan *,
+.nb-sticker * {
+  color: #1A1A2E !important;
+}
+
+/* Selection Color */
+::selection {
+  background: var(--color-nb-yellow);
+  color: #1A1A2E;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 3px solid var(--color-nb-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
